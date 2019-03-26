@@ -1,4 +1,4 @@
-package dev.bug.bugblog.config;
+package dev.bug.bugblog.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -6,6 +6,4 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api")
 public class BlogControllerRest {
-
-
 }

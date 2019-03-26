@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragment/base :: head(title = 'Blog :: Admin Console')">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <header th:replace="fragments/base :: header"></header>
+
+    <main>
+        <form method="post" th:action="@{/admin/blog}" th:object="${blogForm}">
+            <div>
+                <label for="form-blog-subject">Subject: </label>
+                <input id="form-blog-subject" placeholder="theme of topic" th:field="*{subject}" type="text">
+            </div>
+            <div>
+                <label for="form-blog-body">Body: </label>
+                <textarea id="form-blog-body" placeholder="main text" th:field="*{body}" type="text"></textarea>
+            </div>
+            <div>
+                <label for="form-blog-tags">HashTags: </label>
+                <input id="form-blog-tags" placeholder="Java Scala" th:field="*{hashTags}" type="text">
+            </div>
+            <div>
+                <label for="form-blog-closed">Closed: </label>
+                <input id="form-blog-closed" placeholder="private(1), public(0)" th:field="*{closed}" type="text">
+            </div>
+            <button type="submit">Create</button>
+        </form>
+    </main>
+
+    <footer th:replace="fragments/base :: footer"></footer>
+</body>
+</html>

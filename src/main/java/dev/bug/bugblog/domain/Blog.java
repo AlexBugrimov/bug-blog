@@ -46,6 +46,7 @@ public class Blog {
         blogForm.setSubject(this.subject);
         blogForm.setBody(this.body);
         blogForm.setHashTags(String.join(" ", this.hashTags));
+        blogForm.setClosed(this.closed);
         return blogForm;
     }
 }

@@ -1,5 +1,6 @@
 package dev.bug.bugblog.domain;
 
+import dev.bug.bugblog.exception.BadFilledFormException;
 import lombok.Data;
 import lombok.var;
 
@@ -16,8 +17,22 @@ public class BlogForm {
     private String subject;
     private String body;
     private String hashTags;
+    private String closed;
 
     public Blog toBlog() {
+        if (this.subject == null || this.subject.length() < 3) {
+            throw new BadFilledFormException();
+        }
+        if (this.body == null || this.body.length() < 3) {
+            throw new BadFilledFormException();
+        }
+        if (this.hashTags == null || this.hashTags.length() < 3) {
+            throw new BadFilledFormException();
+        }
+        if (this.closed == null || this.closed.equals("0") || !this.closed.equals("1")) {
+            throw new BadFilledFormException();
+        }
+
         var blog = new Blog();
         blog.setSubject(this.subject);
         blog.setBody(this.body);
@@ -35,7 +50,7 @@ public class BlogForm {
         var date = LocalDate.now();
         blog.setCreatedOn(date);
         blog.setPrettyCreatedOn(date.format(DateTimeFormatter.ofPattern(YYYY_MM_DD_HH_MM)));
-        blog.setClosed(false);
+        blog.setClosed(this.closed.equals("0"));
         return blog;
     }
 }
